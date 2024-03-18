@@ -3,15 +3,25 @@ import { useEffect, useState } from "react";
 import useFormStore from "../stores/FormStore";
 export default function DesignSubMenu() {
 
+    let today = new Date();
+
+
+    let timestamp = today.getTime();
+
+ 
+    timestamp += 30 * 24 * 60 * 60 * 1000;
+
+
+    today.setTime(timestamp);
 
     const [formData, setFormData] = useState({
-        startDate :"2024-08-25",
-        startTime : "12:00",
-        endDate : "2027-08-25",
-        endTime : "12:00",
-        responses: 0,
+        startDate :new Date().toISOString().split('T')[0],
+        startTime : "00:00",
+        endDate :  today.toISOString().split('T')[0],
+        endTime : "00:00",
+        responses: 100,
     })
-
+    console.log(new Date( new Date().getTime()  + 2592000).toISOString().split('T')[0]);
     const {logicData, updateLogicData} = useFormStore((state)=> ({logicData: state.logicData , updateLogicData: state.updateLogicData}));
 
     console.log(logicData);

@@ -12,6 +12,8 @@ module.exports = {
       'xl': '1280px', // Extra large screens, desktops
       '2xl':'1536px', // Extra extra large screens, wide desktops
 
+      'c1': '800px',
+
     },
 
   },

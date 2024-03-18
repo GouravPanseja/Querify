@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useState } from "react";
 import { Email, Matrix,Text,Textarea,Radio,Checkbox,Range} from "../components/FormQue";
-import { Dog } from "../assets/assets";
+import { Dog ,formNotStartedImg, ResponseLimitImg} from "../assets/assets";
 import useResponseStore from "../stores/ResponseStore";
 import {motion ,useAnimation} from "framer-motion";
 import { TextField,Select, MenuItem,InputLabel,FormControl } from "@mui/material";
@@ -23,6 +23,9 @@ export default function Form(){
         responses:state.responses,
         updateResponses:state.updateResponses,
     }));
+
+
+    const [hasStarted, setHasStarted] = useState(true);
 
     const [details, setDetails] = useState({
         name:"",
@@ -44,7 +47,7 @@ export default function Form(){
 
     const formId = path[path.length -1];
 
-    const [expiration, setExpiration] = useState(new Date() + 1);
+    const [expiration, setExpiration] = useState(false);
 
     console.log(formId);
 
@@ -60,17 +63,25 @@ export default function Form(){
 
 
             console.log("response  " ,response);
+            console.log("form  fetched ", response.data.data);
+
             const expirationDate = new Date(response.data.data.expireAt);
 
-            console.log("form  fetched ", response.data.data);
+            const startDate = new Date(response.data.data.startAt);
+
+            if(startDate > new Date()){
+                setHasStarted(false);
+            }
+
             console.log(expirationDate);
 
 
             if(expirationDate < new Date()){
                 console.log("form has expired")
+                setExpiration(true);
             }
 
-            setExpiration(expirationDate);
+            
 
             setForm(response.data.data);
 
@@ -240,21 +251,58 @@ export default function Form(){
 
     }
 
-    if(expiration < new Date()){
+    if(!hasStarted){
         return (
+            <div className="h-screen w-screen flex items-center justify-center">
+
+                <div className="flex flex-col gap-6 items-center object-cover sm:h-[400px] sm:w-[400px] h-[200px] w-[200px]">
+                    <div>
+                        <img src={formNotStartedImg}  alt="Error"/>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <p className="md:text-[20px] text-[16px] text-center">Wow! You are early, the form will start at</p>
+                        <p className="md:text-[20px] text-[16px] text-center">{form.startAt}</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        )
+    }
+    if(form?.responses.length >= form?.participantCount){
+        return(
             <div className="h-screen w-screen flex items-center justify-center">
 
                 <div className="flex flex-col gap-6 items-center">
                     <div>
+                        <img src={ResponseLimitImg} alt="Error"/>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <p className="md:text-[20px] text-[16px] text-center">Sorry! The Responses limit for the form has been reached</p>
+                        <p className="md:text-[20px] text-[16px] text-center">Stay tuned!</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        )
+    }
+    if(expiration){
+        return(
+            <div className="h-screen w-screen flex items-center justify-center">
+
+                <div className="flex flex-col gap-6 items-center">
+
+                    <div>
                         <img src={Dog} alt="Error"/>
                     </div>
+
                     <p className="md:text-[20px] text-[16px] text-center">Sorry the form has been closed by the Admin</p>
                 </div>
                 
             </div>
         )
     }
-
     return (
         
 

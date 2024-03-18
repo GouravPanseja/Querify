@@ -114,7 +114,7 @@ const Navbar = ({bgColor,border}) => {
               <button className="h-[30px] w-max px-2 py-2 rounded-sm lg:flex hidden items-center text-[15px] bg-[#036351] whitespace-nowrap text-white"> View Plans</button>
 
               <div className='min-w-9 min-h-9 max-h-9 max-w-9 rounded-full bg-[#e6cef2] flex items-center justify-center' >
-                  <p className="text-[14px]">{( userDetails?.name?.split(" ")[0]?.charAt(0)?.toUpperCase()  +  userDetails?.name?.split(" ")[1]?.charAt(0)?.toUpperCase() ) || "P"}</p>
+                  <p className="text-[14px]">{( userDetails?.name?.split(" ")[0]?.charAt(0)?.toUpperCase()  +  (userDetails?.name?.split(" ")[1]?.charAt(0)?.toUpperCase()) && (userDetails?.name?.split(" ")[1]?.charAt(0)?.toUpperCase())) || "Q"}</p>
               </div>
   
               <div 

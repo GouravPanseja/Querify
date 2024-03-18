@@ -16,6 +16,29 @@ import useUserStore from "../stores/UserStore";
 import { Oval } from "react-loader-spinner";
 export default function ShareForm(){
 
+    const [showSidebar, setShowSidebar] = useState(false);
+
+    useEffect( ()=>{
+
+        const handleResize = ()=>{
+
+            const windowSize = window.innerWidth;
+
+            console.log(windowSize);
+            if(windowSize <= 1120 ){
+                setShowSidebar(false);
+            }
+            else{ setShowSidebar(true)};
+
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return ()=> window.removeEventListener("resize",handleResize);
+
+    },[])
+
     const [showQr, setShowQr] = useState(false);
 
     const {ques, title} = useQueStore((state)=>({
@@ -295,7 +318,7 @@ export default function ShareForm(){
         <div className="h-screen w-screen flex flex-col mt-[54px]" style={{height:"calc(100vh - 54px)"}}>
             
             {/* sidebar */}
-            <div className="w-[256px] h-screen fixed left-0 top-[54px]  bg-[#fafafa] border-r">
+            <div className={` ${showSidebar ? "w-[256px]" : "w-0" }  h-screen fixed left-0 top-[54px]  bg-[#fafafa] border-r overflow-hidden`}>
                 <div 
                     className={`h-[50px] border-b flex items-center px-4 text-[15px] ${sidebarValue === "link" && "bg-[#e3e3e3]"} cursor-pointer hover:bg-gray-400 transition-all duration-100`}
                     onClick={()=> setSidebarValue("link")}
@@ -401,7 +424,7 @@ export default function ShareForm(){
         {
             !loading ?
 
-                <div className="h-screen w-screen ml-[256px] flex flex-col gap-3" style={{width:"calc(100vw - 256px)"}}>
+                <div className={`h-screen ${showSidebar ? "ml-[256px]" : "mx-auto"}  flex flex-col gap-3`} style={{width:"calc(100vw - 256px)"}}>
 
                     <div className="w-full py-3 px-5  flex flex-col gap-[30px]">
                         

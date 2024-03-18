@@ -54,7 +54,7 @@ export default function Dashboard(){
               secondary: '#FFFAEE',
             },
         });
-
+        setShowLogout(false);
         navigate("/");
 
     }
@@ -151,11 +151,8 @@ export default function Dashboard(){
 
     },[])
 
-
-
-
     return (
-        <div className="w-screen h-screen  bg-[#fafafa] pt-[54px]" >
+        <div className="w-screen min-h-screen h-max  bg-[#fafafa] pt-[54px]" >
 
             <Navbar bgColor={"white"} border={1}/>
 

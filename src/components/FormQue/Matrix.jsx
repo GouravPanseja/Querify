@@ -14,7 +14,7 @@ export default function  Matrix({form,que,idx}){
     }));
 
     return (
-        <div className="h-full w-full flex flex-col relative que  hover:shadow-lg hover:bg-slate-50 transition-all duration-100 ">
+        <div className="h-full w-full flex flex-col relative que  hover:shadow-lg hover:bg-slate-50 transition-all duration-100 overflow-x-scroll">
 
             {/* statement */}
             <div className="w-full h-full mb-6">      

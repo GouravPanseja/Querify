@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -13,16 +13,50 @@ import useFormStore from "../stores/FormStore";
 import {motion} from "framer-motion";
 import OtherSubMenu from "../components/OtherSubMenu"
 import AddQues from "../components/AddQue";
+import {HiOutlineMenuAlt1} from "../assets/assets"
 
 export default function Preview(){
+
+
+    useEffect( ()=>{
+
+        const handleResize = ()=>{
+
+            const windowSize = window.innerWidth;
+
+            console.log(windowSize);
+            if(windowSize <= 1024 ){
+                setShowSidebar(false);
+            }
+            else{ setShowSidebar(true)};
+
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return ()=> window.removeEventListener("resize",handleResize);
+
+    },[])
+
+
+    const [showSidebar , setShowSidebar] = useState(false);
+
     const location = useLocation();
 
     const navigate = useNavigate();
+
     const {visualData, updateVisualData, logo} = useFormStore( (state)=>({
         visualData: state.visualData,
         updateVisualData: state.updateVisualData,
         logo : state.logo,
     }));
+    
+    const [formColor, setFormColor] = useState("#fafafa");
+
+    useEffect(()=>{
+        setFormColor(visualData.background)
+    },[visualData.background])
 
     const [template, setTemplate] = useState();
     const [customise, setIsCustomise] = useState(false);
@@ -114,11 +148,11 @@ export default function Preview(){
 
         fetchTemplate();
 
+
+
     },[])
 
-    console.log(visualData.logoBorderRadius)
-    console.log(logo);
-    console.log(template?.thumbnail);
+
 
 
 
@@ -126,11 +160,11 @@ export default function Preview(){
         <div className="w-screen min-h-screen h-max bg-[#fafafa]">
 
             {/* Sidebar */}
-            <div className={`sidebar fixed top-0 left-0 w-[256px] h-screen shadow-md bg-white  ${!customise && "p-[30px]"}   border `}>
+            <div className={`sidebar fixed top-0 left-0 ${showSidebar ? "w-[256px]" : "w-0" }  h-screen p-0 overflow-x-hidden shadow-md bg-white    border `}>
 
                 {
                     !customise ? 
-                    <div className="w-full h-full flex flex-col gap-5">
+                    <div className={`w-full ${showSidebar && "p-[20px]"} h-full flex flex-col gap-5`}>
                             {/* back */}
                         <div className="flex gap-3 items-center mb-5 cursor-pointer" onClick={()=> navigate("/templateBank")}>
                             <IoIosArrowRoundBack/>
@@ -235,8 +269,22 @@ export default function Preview(){
             </div>
 
              {/* Navbar */}
-            <div className="navbar fixed top-0 left-[256px] flex  items-center justify-center gap-2 h-[50px] w-full bg-white shadow-sm z-[100] border border-l-0 relative" style={{width:"calc(100vw - 256px)"}}>
+            <div className={`preview-navbar fixed top-0 ${showSidebar ? "left-[256px]" : "left-0" }  flex  items-center justify-center  gap-2 h-[50px] w-full bg-white shadow-sm z-[100] border border-l-0`}>
 
+                <div 
+                    className={`h-full px-3 lg:hidden flex items-center justify-center gap-1  cursor-pointer absolute left-[5px] `}
+                    
+                >
+                    
+                    <div 
+                        className="text-[14px]  text-white py-[7px] font-semibold px-1 rounded-md  transition-all duration-200 hover:shadow-xl"
+                        onClick={()=> setShowSidebar((prev)=> !prev)}
+                    >
+
+                        <HiOutlineMenuAlt1/>
+                    </div>
+                </div>
+                
                 <div 
                     className={`h-full px-3 flex items-center justify-center gap-1 cursor-pointer`} 
                     onClick={()=> {setEdit(false); setCurrentNav("preview")}}
@@ -251,28 +299,35 @@ export default function Preview(){
                     
                     <p className={`${currentNav === "create" ? "text-black" : "text-[#8c8c8c]"} text-[15px]  flex items-center border border-b-2 border-transparent  font-semibold `}>create</p>  
                 </div>
-
-
                 <div 
-                    className={`h-full px-3 flex items-center justify-center gap-1  cursor-pointer absolute right-[50px] `}
+                    className={`h-full sm:hidden  flex items-center justify-center gap-1  cursor-pointer`}
                     onClick={()=> {navigate("/shareForm")}}
                 >
                     
-                <p className="text-[14px] bg-[#036351] text-white py-[7px] font-semibold px-4 rounded-md shadow-lg hover:bg-[#036351d1] transition-all duration-200 hover:shadow-xl">Publish</p>
+                    <p className="text-[14px]  text-white px-2 rounded-md py-[7px] font-semibold text-[#036351] hover:text-white hover:bg-[#036351d1] transition-all duration-200 ">Publish</p>
+                </div>
+
+
+
+                <div 
+                    className={`h-full px-3 sm:flex hidden items-center justify-center gap-1  cursor-pointer absolute right-[50px] `}
+                    onClick={()=> {navigate("/shareForm")}}
+                >
+                    
+                    <p className="text-[14px] bg-[#036351] text-white py-[7px] font-semibold px-4 rounded-md shadow-lg hover:bg-[#036351d1] transition-all duration-200 hover:shadow-xl">Publish</p>
                 </div>
                 
                
             </div>
 
             
-            {
-                currentNav !== "share" ?
-                <div className=" ml-[256px]  h-max " style={{ width:"calc(100vw - 256px)"}}>
+            {/* Main */}
+            <div className={`preview-main w-screen ${showSidebar ? "ml-[256px]": "mx-auto"} h-max `} >
 
 
-                    <div className="w-[75%]  h-max mx-auto pt-[100px] relative ">
+                    <div className={` ${showSidebar ? "w-[75%] " : "w-[90%]" }  h-max mx-auto pt-[100px] relative `}>
 
-                        <div className="flex flex-col gap-2 rounded-lg shadow-lg justify-center relative border bg-white bg-center bg-contain bg-no-repeat "  style={{backgroundColor:visualData.background, background:`url(${visualData.backgroundImage})`}}>
+                        <div className="flex flex-col gap-2 rounded-lg shadow-lg justify-center relative border bg-center bg-contain bg-no-repeat z-[10] bg-white"  style={{backgroundColor:formColor, background:`url(${visualData.backgroundImage})`}}>
                             {
                                 ques.length ===0 &&
                                 <AddQues visible="block"/>
@@ -288,10 +343,10 @@ export default function Preview(){
                             </div>
 
                             
-                            <h1 className="text-[22px] text-center mb-7 pt-5">
+                            <h1 className=" text-center mb-7 pt-5">
                                 {
                                     !edit ?
-                                    <p className="hover:bg-slate-200 w-max mx-auto " style={{fontFamily:visualData.fontFamily}}>{title}</p> 
+                                    <p className="hover:bg-slate-200 w-max mx-auto sm:text-[22px] text-[16px]" style={{fontFamily:visualData.fontFamily}}>{title}</p> 
                                     :
                                     <input
                                         type="text"
@@ -324,9 +379,7 @@ export default function Preview(){
                     </div>
 
 
-                </div>
-                : null
-            }
+            </div>
 
 
             

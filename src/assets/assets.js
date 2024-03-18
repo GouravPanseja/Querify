@@ -49,6 +49,8 @@ import { MdOutlineCancel } from "react-icons/md";
 import { GoHubot } from "react-icons/go";
 import { IoChatbubbles } from "react-icons/io5";
 import { FaMinus } from "react-icons/fa";
+import formNotStartedImg from "../assets/formNotStartedImg.png"
+import ResponseLimitImg from "../assets/ResponseLimitImg.png"
 export {
     IoPersonSharp,
     MdOutlineMailOutline,
@@ -100,5 +102,7 @@ export {
     MdOutlineCancel,
     GoHubot,
     IoChatbubbles,
-    FaMinus
+    FaMinus,
+    formNotStartedImg,
+    ResponseLimitImg
 };

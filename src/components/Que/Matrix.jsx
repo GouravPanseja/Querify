@@ -53,7 +53,7 @@ export default function  Matrix({que,idx}){
 
 
     return (
-        <div className="h-full w-full flex flex-col relative que  hover:shadow-lg hover:bg-slate-50 transition-all duration-100">
+        <div className="h-full w-full flex flex-col relative que  hover:shadow-lg hover:bg-slate-50 transition-all duration-100 overflow-x-scroll">
 
             
 
@@ -76,13 +76,13 @@ export default function  Matrix({que,idx}){
                 }
             </div>
 
-            <table>
+            <table className="min-w-max overflow-x-scroll">
                 <tr className=" ml-[30%] w-[70%] h-[30px] flex justify-between mt-7 items-center ">
                         {
                             que.matrixColumns.map((col,colIdx)=>(
-                                <th className="text-[13px] ">
+                                <th className="">
                                     { !edit ? 
-                                        <p style={{color:visualData.labelColor, fontFamily:visualData.fontFamily}}>{ques[idx-1].matrixColumns[colIdx]}</p> : 
+                                        <p className=" mx-2" style={{color:visualData.labelColor, fontFamily:visualData.fontFamily}}>{ques[idx-1].matrixColumns[colIdx]}</p> : 
                                         <input 
                                             type="text" 
                                             className={`border w-[90%] bg-slate-200`} 

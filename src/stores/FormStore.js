@@ -1,5 +1,10 @@
 import { create } from "zustand";
 
+let today = new Date();
+let timestamp = today.getTime();
+timestamp += 30 * 24 * 60 * 60 * 1000;
+today.setTime(timestamp);
+
 const formStore = (set) => ({ 
 
     visualData:{
@@ -17,8 +22,8 @@ const formStore = (set) => ({
     },
 
     logicData:{
-        startAt:Date.now(),
-        expiresAt: Date.now() + 10000000000,
+        startAt:new Date().toISOString().split('T')[0],
+        expiresAt: today.toISOString().split('T')[0],
         participantCount:100,
     },
     

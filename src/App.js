@@ -16,21 +16,21 @@ import FormResults from './pages/FormResults';
 import Bot from "./components/Bot"
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
-import useResponseStore from './stores/ResponseStore';
+import useResponseStore from './stores/ResponsiveStore';
 
 function App() {
 
-  const setScreenSize =  useResponseStore( (state)=> state.setScreenSize);
+  // const setScreenSize =  useResponseStore( (state)=> state.setScreenSize);
 
-  const handelScroll = ()=>{
-    setScreenSize(window.scrollY);
-    console.log(window.scrollY);
-  }
-  useEffect(()=>{
-    console.log('yes');
-    window.addEventListener('scroll', handelScroll);
+  // const handelScroll = ()=>{
+  //   setScreenSize(window.scrollY);
+  //   console.log(window.scrollY);
+  // }
+  // useEffect(()=>{
+  //   console.log('yes');
+  //   window.addEventListener('scroll', handelScroll);
 
-  },[])
+  // },[])
   return (
     <div>
 

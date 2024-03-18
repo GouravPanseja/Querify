@@ -26,8 +26,14 @@ export default function Error(){
     return(
 
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className="h-max p-2">
-                <img src="https://public-assets.typeform.com/app-shell/app-shell.051bfe9431943d44194f.png" alt="error" />
+            <div className="h-max p-2 flex flex-col gap-4 items-center">
+                <div> 
+                    <img className="h-[300px] w-[300px] object-cover" src="https://public-assets.typeform.com/app-shell/app-shell.051bfe9431943d44194f.png" alt="error" />
+                </div>
+                
+                <div>
+                    <p className="sm:text-[22px] text-[16px] text-center">404: Page Not Found, but our Intern is Looking for it!</p>
+                </div>
             </div>
         </div>
 
