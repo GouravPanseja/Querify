@@ -14,18 +14,22 @@ import {motion} from "framer-motion"
 import Iframe from 'react-iframe'
 import useUserStore from "../stores/UserStore";
 import { Oval } from "react-loader-spinner";
+import { FaCode } from "../assets/assets";
 export default function ShareForm(){
 
     const [showSidebar, setShowSidebar] = useState(false);
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
 
     useEffect( ()=>{
 
         const handleResize = ()=>{
 
             const windowSize = window.innerWidth;
+            setScreenSize(windowSize);
 
             console.log(windowSize);
-            if(windowSize <= 1120 ){
+            if(windowSize <= 1020 ){
+
                 setShowSidebar(false);
             }
             else{ setShowSidebar(true)};
@@ -306,8 +310,8 @@ export default function ShareForm(){
 
 
     const mailHandler = ()=>{
-        const subject = `participation request for the survey by ${userDetails.name}`;
-        const body = `We request you to spare some time to pariticipate in the survey '${newForm.title}' by ${userDetails.name}`
+        const subject = `participation request for the survey by ${userDetails?.name && ""}`;
+        const body = `We request you to spare some time to pariticipate in the survey '${newForm?.title}' by ${userDetails?.name && ""}`
         const link = `mailto:${""}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
         window.open(link);
@@ -315,10 +319,12 @@ export default function ShareForm(){
 
     console.log(showQr);
     return (
-        <div className="h-screen w-screen flex flex-col mt-[54px]" style={{height:"calc(100vh - 54px)"}}>
+        <div className="h-screen w-screen flex flex-col relative top-[51px]" style={{height:"calc(100vh - 54px)"}}>
+
+
             
             {/* sidebar */}
-            <div className={` ${showSidebar ? "w-[256px]" : "w-0" }  h-screen fixed left-0 top-[54px]  bg-[#fafafa] border-r overflow-hidden`}>
+            <div className={` ${showSidebar ? "w-[256px]" : "w-0" }  h-screen fixed left-0 top-[50px]  bg-[#ffffff] border-r overflow-hidden`}>
                 <div 
                     className={`h-[50px] border-b flex items-center px-4 text-[15px] ${sidebarValue === "link" && "bg-[#e3e3e3]"} cursor-pointer hover:bg-gray-400 transition-all duration-100`}
                     onClick={()=> setSidebarValue("link")}
@@ -339,7 +345,7 @@ export default function ShareForm(){
                 </div>
             </div>
             
-            <Navbar bgColor={"#e1e6f5"}/>
+            <Navbar bgColor={"#ffffff"} border={1}/>
 
             <motion.div className={` ${!showQr && "hidden" }  h-screen w-screen fixed z-[1000] top-0 left-0 bg-[#0000009a] flex items-center justify-center`}>
                 <motion.div className="w-[450px] h-[500px] bg-white rounded-lg p-[30px] pt-[30px] flex flex-col gap-2">
@@ -424,24 +430,24 @@ export default function ShareForm(){
         {
             !loading ?
 
-                <div className={`h-screen ${showSidebar ? "ml-[256px]" : "mx-auto"}  flex flex-col gap-3`} style={{width:"calc(100vw - 256px)"}}>
+                <div className={`h-screen ${showSidebar ? "ml-[256px]" : " w-screen"} bg-[#fafafa]  flex flex-col gap-3`} >
 
                     <div className="w-full py-3 px-5  flex flex-col gap-[30px]">
                         
                         {/* // heading */}
                         <div className="w-full pt-3">
-                            <p className="text-[24px] "> Your Form has been successfully created!</p>
+                            <p className="xs:text-[24px] xxs:text-[20px] text-[18px]"> Your Form has been successfully created!</p>
                         </div>
 
                         {/* // input & icons */}
                         <div className="flex flex-col  h-max gap-[30px] justify-center  ">
-                            <div className="flex gap-5 items-ce">
-                                        {/* // input field */}
+                            <div className="flex gap-5 items-center">
+                                {/* // input field */}
                                 <div className=" flex items-center h-[30px] bg-gray-200  border border-black border-l-0 ">
                                     <input 
                                         type="text" 
                                         value={uniqueLink}  
-                                        className=" text-black outline-none px-2 max-w-[300px] min-w-[300px] min-h-[30px] bg-gray-50 border border-black text-[14px]"
+                                        className={` text-black outline-none px-2   max-w-[300px] xxs:min-w-[300px] min-w-[200px] min-h-[30px] bg-gray-50 border border-black text-[14px]`}
                                         placeholder="Click button to generate form url"
                                     />
 
@@ -450,7 +456,7 @@ export default function ShareForm(){
                                         arrow={true}
                                     >
                                         <div 
-                                            className={`text-[15px] h-full px-2  text-white bg-black min-h-[25px] cursor-pointer  flex items-center hover:bg-gray-700 transition-all duration-200 active:scale-[0.80] justify-center`}
+                                            className={`text-[15px] h-full px-2  text-white bg-black min-h-[25px] whitespace-nowrap cursor-pointer  flex items-center hover:bg-gray-700 transition-all duration-200 active:scale-[0.80] justify-center`}
                                             onClick={()=>copyToClipboard(uniqueLink)}
                                         > 
 
@@ -460,7 +466,7 @@ export default function ShareForm(){
                                     
                                 </div>
 
-                                <div className="flex gap-5">
+                                <div className={`flex gap-5 ${screenSize < 568 && "hidden"}`}>
                                     <Tooltip  title="QR code" arrow={true}> 
                                         <div onClick={()=> setShowQr((prev)=> !prev)} >
                                             <IoQrCodeOutline className="text-[20px] cursor-pointer"/>
@@ -482,7 +488,7 @@ export default function ShareForm(){
                         {/* share icons */}
                         <div className="flex gap-4 items-center">
 
-                            <p className="text-[20px] text-[#8b8b8b]">Share via</p>
+                            <p className="xxs:text-[20px] text-[14px] text-[#8b8b8b]">Share via</p>
 
                             <div className="flex gap-4">
                                 <Tooltip  title="Facebook" arrow={true}> 
@@ -503,6 +509,38 @@ export default function ShareForm(){
                                     </div>
                                    
                                 </Tooltip>
+                                <Tooltip  title="Embed in code" arrow={true}> 
+                                    <div 
+                                        className={`cursor-pointer ${showSidebar && "hidden"}`} 
+                                        onClick={()=> setShowWeb( (prev)=> !prev)}
+                                    >
+                                        <FaCode className="text-[22px] cursor-pointer " onClick={FaCode}/>
+                                    </div>
+                                    
+                                </Tooltip>  
+                                <Tooltip  title="Sheets" arrow={true}> 
+                                    <div 
+                                        className={`cursor-pointer ${showSidebar && "hidden"}`}
+                                        onClick={()=> setShowSpreadsheet( (prev)=> !prev)}
+                                    >
+                                        <svg height="23"  width="24" viewBox="0 0 212 283"><g fill="none" fill-rule="evenodd"><path d="M17 0h124l71 71v195c0 9.389-7.611 17-17 17H17c-9.389 0-17-7.611-17-17V17C0 7.611 7.611 0 17 0z" fill="#13A562"></path><g fill="#F1F1F1"><path d="M55 158h103v12H55z"></path><path d="M101 138h12v83h-12z"></path><path d="M55 188h103v12H55z"></path><path d="M60 142v75h93v-75H60zm-12-12h117v99H48v-99z" fill-rule="nonzero"></path></g><path d="M146 66l66 67V70.992z" fill="#049052"></path><path d="M141 0l71 71h-54c-9.389 0-17-7.611-17-17V0z" fill="#8BD1AF"></path></g></svg>
+                                    </div>
+                                    
+                                </Tooltip> 
+                                <Tooltip  title="QR code" arrow={true}> 
+                                    <div onClick={()=> setShowQr((prev)=> !prev)} >
+                                        <IoQrCodeOutline className={`text-[20px] cursor-pointer xs:hidden`}/>
+                                    </div>
+                                    
+                                </Tooltip>                             
+                                
+                                <Tooltip  title="Mail" arrow={true}> 
+                                    <div >
+                                        <IoMdMail className="text-[22px] cursor-pointer xs:hidden" onClick={mailHandler}/>
+                                    </div>
+                                    
+                                </Tooltip>  
+                                 
                             </div>
 
 
@@ -512,10 +550,19 @@ export default function ShareForm(){
 
                     <div className=" w-full items-center gap-6  flex justify-center flex-col">
                         <div>
-                            <Iframe title="form" url={ `${uniqueLink}`} height="450px" width={`${view === "desktop" ? "800px" : "350px" }`} className="border border-black rounded-md"></Iframe>
+                            <Iframe 
+                                title="form" 
+                                url={ `${uniqueLink}`} 
+                                height="450px" 
+                                width={ 
+                                    view === 'desktop' && screenSize >= 1120 ? 850 :  
+                                    view === 'desktop' && screenSize >= 756 ? 670 :  
+                                    view === 'desktop' && screenSize >= 568 ? 500 :
+                                    view === 'mobile' ? 350 : null
+                                    } className="rounded-md " styles={{boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"}}></Iframe >
                         </div>
                         
-                        <div className="flex ">
+                        <div className={`flex ${screenSize < 568 && "hidden"}`}>
                             <div 
                                 className={`px-2 ${ view === "desktop" ? "bg-[#737373] text-white" : "bg-gray-200 text-black hover:bg-gray-300"} shadow-r cursor-pointer py-1 rounded-l-sm text-[15px]`}
                                 onClick={()=> setView("desktop")}
@@ -523,7 +570,7 @@ export default function ShareForm(){
                                 Desktop
                             </div>
                             <div 
-                                className={`px-2 py-1 ${view === "mobile" ? "bg-[#737373] text-white" : "bg-gray-200 text-black hover:bg-gray-300"} bg-gray-200 cursor-pointer  rounded-r-sm`}
+                                className={`px-2 py-1 ${view === "mobile" ? "bg-[#737373] text-white" : "bg-gray-200 text-black hover:bg-gray-300"}  cursor-pointer  rounded-r-sm`}
                                 onClick={()=> setView("mobile")}
                             >
                                 Mobile

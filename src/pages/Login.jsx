@@ -8,7 +8,7 @@ import {Otp} from "./Otp"
 import toast from "react-hot-toast";
 import axios from "axios";
 import useUserStore from "../stores/UserStore";
-
+import {motion} from "framer-motion"
 export default function Login(){
     const navigate = useNavigate();
 
@@ -250,17 +250,24 @@ export default function Login(){
             </div>
 
             {/* right part */}
-            <div className="flex gap-3 flex-col items-center  justify-center w-0 md:w-[45%] overflow-hidden relative">   
-                <div className="absolute top-3 right-0 flex gap-2 items-center gap-5 mr-4">
-                    <p className="text-white text-sm font-extralight">Don't have an account ? </p>
-                    <Link to="/signup" className="text-white font-extralight border-[1px] border-white px-2"> Signup </Link>
+            <motion.div 
+                key="signup"
+                animate={{opacity:1}}
+                initial={{opacity:0.5}}
+                transition={{duration:0.5}}
+                exit={{opacity:0}}
+                className="lg:flex hidden gap-3 flex-col items-center  justify-center w-[45%] overflow-hidden relative">   
+
+                <div className="absolute top-3 right-0 flex items-center gap-5 mr-4">
+                    <p className="text-white text-sm font-extralight">Already have an account ? </p>
+                    <Link to="/login" className="text-white font-extralight border-[1px] border-white px-2"> Login </Link>
                 </div>
                 <div className=" text-center">
-                    <p className="text-white text-[2.3rem] ">Sign In <br/> and Explore</p>
+                    <p className="text-white text-[2.3rem] ">Sign up <br/> and come on in</p>
      
                 </div>
 
-                <div className="w-[350px] h-[350px] mt-3">
+                <div className="xl:w-[350px] w-[300px] xl:h-[350px] h-[300px] mt-3">
                     <img
                         src={signupImage}
                         alt="signupImage"
@@ -269,7 +276,7 @@ export default function Login(){
                 </div>
 
                 <p className="text-gray-200">&#169; Querify</p>
-            </div>
+            </motion.div>
 
         </div>
     )

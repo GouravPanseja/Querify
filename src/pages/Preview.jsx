@@ -304,7 +304,7 @@ export default function Preview(){
                     onClick={()=> {navigate("/shareForm")}}
                 >
                     
-                    <p className="text-[14px]  text-white px-2 rounded-md py-[7px] font-semibold text-[#036351] hover:text-white hover:bg-[#036351d1] transition-all duration-200 ">Publish</p>
+                    <p className="text-[14px] px-2 rounded-md py-[7px] font-semibold text-[#036351] hover:text-white hover:bg-[#036351d1] transition-all duration-200 ">Publish</p>
                 </div>
 
 

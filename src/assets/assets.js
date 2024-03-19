@@ -51,6 +51,8 @@ import { IoChatbubbles } from "react-icons/io5";
 import { FaMinus } from "react-icons/fa";
 import formNotStartedImg from "../assets/formNotStartedImg.png"
 import ResponseLimitImg from "../assets/ResponseLimitImg.png"
+import { FaCode } from "react-icons/fa";
+import { TiTick } from "react-icons/ti";
 export {
     IoPersonSharp,
     MdOutlineMailOutline,
@@ -104,5 +106,7 @@ export {
     IoChatbubbles,
     FaMinus,
     formNotStartedImg,
-    ResponseLimitImg
+    ResponseLimitImg,
+    FaCode,
+    TiTick
 };

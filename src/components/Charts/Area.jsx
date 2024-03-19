@@ -1,6 +1,6 @@
 import { LineChart } from "@mui/x-charts";
 
-export default function Area({form, que, idx,chartData}){
+export default function Area({form, que, idx,chartData,screenSize}){
 
     return(
         <LineChart
@@ -19,7 +19,7 @@ export default function Area({form, que, idx,chartData}){
                 }   
             ]}
             height={500}
-            width={800}
+            width={ (0.8*screenSize) > 800 ?    800 : (0.8*screenSize)}
         />
     )
 }

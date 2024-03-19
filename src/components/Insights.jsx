@@ -32,57 +32,79 @@ export default function Insights({form,responses}){
                 }}
                 key = "insight"
             >
-                        <h1 className="text-[24px]"> Big Picture</h1>
+                        <h1 className="text-[28px] font-semibold"> Big Picture</h1>
                         
-                        <table className="result_table mt-7">
-                    
-                            <tr>
-                                <th className="text-[14px] text-[#808080]">Views</th>
-                                <th className="text-[14px] text-[#808080]" >Submissions</th>
-                                <th className="text-[14px] text-[#808080]">Submission Rate</th>
-                                <th className="text-[14px] text-[#808080]">Time to Complete</th>
-                            </tr>
+                        <div className="result_table mt-7 w-full">
 
-                            <tr className="">
-                                <td className="text-[36px] tracking-widest font-thin text-center">
-                                    {form?.views}
-                                </td>
-                                <td className="text-[36px] tracking-widest font-thin text-center">
-                                    {form.responses?.length}
-                                </td>
-                                <td className="text-[36px] tracking-widest font-thin text-center">
-                                    {((form.responses?.length/form?.views) * 100).toFixed(2)}%
-                                </td>
-                                <td className="text-[36px] tracking-widest font-thin text-center">
-                                    {isNaN(avgCompletionTime()) ? "---" : avgCompletionTime()}s
-                                </td>
-                            </tr>
-                
-  
-                        
-                            <tr className="">
-                                <th className="text-[14px] text-[#808080]">Created at</th>
-                                <th className="text-[14px] text-[#808080]" >Live since</th>
-                                <th className="text-[14px] text-[#808080]">Expires at</th>
-                                <th className="text-[14px] text-[#808080]">Participants left</th>
-                            </tr>
+                            <div className="flex justify-between flex-wrap">
 
-                            <tr>
-                                <td className="text-[26px] tracking-widest font-thin text-center">
-                                    {form?.createdAt?.split("T")[0]}
-                                </td>
-                                <td className="text-[26px] tracking-widest font-thin text-center">
-                                    {form?.startAt?.split("T")[0]}
-                                </td>
-                                <td className="text-[26px] tracking-widest font-thin text-center">
-                                    {form.expireAt?.split("T")[0] }
-                                </td>
-                                <td className="text-[26px] tracking-widest font-thin text-center">
-                                    {(form?.participantCount - form?.responses?.length)}
-                                </td>
-                            </tr>
+                                <div className="flex flex-col gap-11 items-center justify-center m-6">
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Views</div>
+                                        <div className="xbs:text-[36px] text-[26px] tracking-widest font-thin text-center">
+                                            {form?.views}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Created at</div>
+                                        <div className="xbs:text-[26px] text-[18px] tracking-widest font-thin text-center">
+                                            {form?.createdAt?.split("T")[0]}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div className="flex flex-col gap-11 items-center justify-center xbs:m-6 m-4">
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]" >Submissions</div>
+                                        <div className="xbs:text-[36px] text-[26px] tracking-widest font-thin text-center">
+                                            {form.responses?.length}
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]" >Live since</div>
+                                        <div className="xbs:text-[26px] text-[18px] tracking-widest font-thin text-center">
+                                            {form?.startAt?.split("T")[0]}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col gap-11 items-center justify-center  xbs:m-6 m-4">
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Submission Rate</div>
+                                        <div className="xbs:text-[36px] text-[26px] tracking-widest font-thin text-center">
+                                            {((form.responses?.length/form?.views) * 100).toFixed(2)}%
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Expires at</div>
+                                        <div className="xbs:text-[26px] text-[18px] tracking-widest font-thin text-center">
+                                            {form.expireAt?.split("T")[0] }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col gap-11 items-center justify-center  xbs:m-6 m-4">
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Time to Complete</div>
+                                        <div className="xbs:text-[36px] text-[26px] tracking-widest font-thin text-center">
+                                            {isNaN(avgCompletionTime()) ? "---" : avgCompletionTime()}s
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-[14px] text-[#808080]">Participants left</div>
+                                        <div className="xbs:text-[26px] text-[18px] tracking-widest font-thin text-center">
+                                            {(form?.participantCount - form?.responses?.length)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                                    
                 
-                        </table>
+                        </div>
             </motion.div>
         </AnimatePresence>
         

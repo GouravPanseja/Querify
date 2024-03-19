@@ -241,7 +241,7 @@ export default function Dashboard(){
                 {/* Navbar */}
 
  
-                <div className={`fixed ${ activeSidebar ? "left-[256px]" : "left-0" } top-[54px] bg-[#fafafa] h-[80px]   flex items-center px-[20px]  border-b  justify-between`} style={ activeSidebar ? {width:"calc(100vw - 256px)"} : {width : "100vw"} }>
+                <div className={`fixed ${ activeSidebar ? "left-[256px]" : "left-0" } top-[50px] z-[10] bg-[#fafafa] h-[80px]   flex items-center px-[20px]  border-b  justify-between`} style={ activeSidebar ? {width:"calc(100vw - 256px)"} : {width : "100vw"} }>
             
                     <div className="flex gap-3">
                         <div 

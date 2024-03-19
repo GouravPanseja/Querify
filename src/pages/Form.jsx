@@ -37,7 +37,7 @@ export default function Form(){
 
     const controls = useAnimation();
 
-    const [showDetailsMenu, setShowDetialsMenu] = useState(true);
+    const [showDetailsMenu, setShowDetialsMenu] = useState(false);
 
     const [popup, setPopup] = useState(false);
 
@@ -251,9 +251,15 @@ export default function Form(){
 
     }
 
+    // form not started
     if(!hasStarted){
         return (
             <div className="h-screen w-screen flex items-center justify-center">
+                <div className="fixed bottom-1 sm:block left-1 hidden">
+                    <div className="bg-black py-1 px-3">
+                        <p className="text-[15px] text-white">Powered by | Querify</p>
+                    </div>
+                </div>
 
                 <div className="flex flex-col gap-6 items-center object-cover sm:h-[400px] sm:w-[400px] h-[200px] w-[200px]">
                     <div>
@@ -261,7 +267,7 @@ export default function Form(){
                     </div>
                     <div className="flex flex-col gap-2">
                         <p className="md:text-[20px] text-[16px] text-center">Wow! You are early, the form will start at</p>
-                        <p className="md:text-[20px] text-[16px] text-center">{form.startAt}</p>
+                        <p className="md:text-[20px] text-[16px] text-center">{new Date(form.startAt).toLocaleString()}</p>
                     </div>
                     
                 </div>
@@ -269,6 +275,8 @@ export default function Form(){
             </div>
         )
     }
+
+    // responses length exceded
     if(form?.responses.length >= form?.participantCount){
         return(
             <div className="h-screen w-screen flex items-center justify-center">
@@ -287,6 +295,7 @@ export default function Form(){
             </div>
         )
     }
+    // form has expired
     if(expiration){
         return(
             <div className="h-screen w-screen flex items-center justify-center">
@@ -335,7 +344,7 @@ export default function Form(){
                 
             >
                 <motion.div
-                    className="w-screen h-screen bg-white rounded-lg  flex flex-col gap-2"
+                    className="w-screen h-screen bg-white   flex flex-col gap-2"
 
                     animate={{
                         y: popup ? 0 : 20,
@@ -353,22 +362,31 @@ export default function Form(){
                 >
                     <div className =" flex  w-full h-full"> 
                         
-                        {/* back button */}
-                        <div className="fixed z-[99999] top-7 right-7 bg-gray-800 px-3 py-1 rounded-sm text-white flex  gap-1 items-center cursor-pointer" onClick={()=> navigate("/")}> Querify | <p className="text-gray-300">let's survey the future </p> </div>
-                        
                         {/* // querify  */}
+                        <div 
+                            className="fixed z-[99999] c1:top-7 top-[95vh] right-7 bg-gray-800 px-3 py-1 rounded-sm text-white flex  gap-1 items-center cursor-pointer" 
+                            onClick={()=> navigate("/")}
+                        > Querify <span className="sm:block hidden text-white">|</span>
+                            <p 
+                                className="text-gray-300 sm:block hidden" 
+                            >
+                                let's survey the future 
+                            </p> 
+                        </div>
+                        
+                        {/* back button */}
                         <div className="h-[50px] fixed top-0 flex px-7 items-center gap-3 cursor-pointer" onClick={()=>setPopup(false)}>
                             <IoIosArrowRoundBack/>
                             <p>back</p> 
                         </div>
 
                         {/* // left part  */}
-                        <div className="w-[50%] h-full p-[30px] pr-0 flex flex-col items-center gap-7 overflow-hidden"> 
+                        <div className="c1:w-[50%] w-full h-full py-[30px]   flex flex-col justify-center items-center overflow-hidden"> 
 
                             <motion.div 
-                                className="h-[80%] w-full my-auto flex gap-2  "
+                                className="h-[80%] w-full my-auto flex  "
                                 animate={{
-                                    x: showDetailsMenu ? "-101%"  : "0%"
+                                    x: showDetailsMenu ? "-100%"  : "0%"
                                 }}
                                 transition={{
                                     type:"spring",
@@ -376,8 +394,8 @@ export default function Form(){
                                     stiffnes:"400"
                                 }}
                                 >
-
-                                <div className=" h-full min-w-full flex flex-col gap-7">
+                                {/* first half of left */}
+                                <div className=" h-full min-w-full px-7 flex flex-col gap-7">
                                     <h1 className="text-[21px] mt-40 text-center"> Would you like to share your information with the Form Admin? </h1>
 
                                     <div className="flex gap-3 justify-center ">
@@ -395,16 +413,18 @@ export default function Form(){
                                         </p>
                                     </div>
                                 </div>
-
-                                <div className="h-full min-w-full">
+                                
+                                {/* second half of left */}
+                                <div className="h-full min-w-full  flex justify-start flex-col items-center">
                                         {/* // heading  */}
-                                    <h1 className="text-[24px] py-3">
-                                        Let us know you better 
-                                    </h1>
+                                    
                                     {/* // form */}
-                                    <form className=" w-[50%] flex flex-col gap-3">
+                                    <form className=" c1:w-[50%] w-full flex flex-col gap-5 items-center">
+                                        <h1 className="md:text-[24px] text-[22px] py-3">
+                                            Let us know you better 
+                                        </h1>
 
-                                        <div className="flex flex-col gap-1">
+                                        <div className="flex flex-col gap-1 max-w-[350px] min-w-[300px]">
                                             <label htmlFor="name" className="text-[14px]">Name</label>
                                             <input 
                                                 type="text"
@@ -416,7 +436,7 @@ export default function Form(){
                                                 onChange={(e)=> setDetails( (prev)=> ({...prev, name: e.target.value}))}
                                             /> 
                                         </div>
-                                        <div className="flex flex-col gap-1">
+                                        <div className="flex flex-col gap-1 max-w-[350px] min-w-[300px]">
                                             <label htmlFor="name" className="text-[14px]">Email</label>
                                             <input 
                                                 type="email"
@@ -429,7 +449,7 @@ export default function Form(){
                                             /> 
                                         </div>
 
-                                        <div className="h-[50x] flex gap-1">
+                                        <div className="h-[50x] flex gap-1 max-w-[350px] min-w-[300px]">
                                             <FormControl fullWidth>
                                                 <InputLabel id="demo-simple-select-label" className="text-[14px]">Gender</InputLabel>
                                                 <Select
@@ -465,7 +485,7 @@ export default function Form(){
                 
                                         </div>
 
-                                        <div className="flex flex-col gap-1 max-h-[350px] overflow-hidden">
+                                        <div className="flex flex-col gap-1 max-h-[350px] overflow-hidden max-w-[350px] min-w-[300px]">
                                             <label htmlFor="comment" className="text-[14px]">Comment </label>
 
                                             <textarea 
@@ -478,7 +498,7 @@ export default function Form(){
                                             />
                                         </div>
 
-                                        <button type="submit" className="border border-[#cccccc] py-3 bg-gray-800 rounded-sm text-white hover:bg-gray-600 transition-all duration-200 " onClick={ (e)=>{ e.preventDefault(); postResponse()}}> Submit Response</button>
+                                        <button type="submit" className="border min-w-[300px] max-w-[350px] border-[#cccccc] py-3 bg-gray-800 rounded-sm text-white hover:bg-gray-600 transition-all duration-200 " onClick={ (e)=>{ e.preventDefault(); postResponse()}}> Submit Response</button>
                                         <p className="text-[14px] underline cursor-pointer" onClick={(e)=>{ e.preventDefault() ;setShowDetialsMenu(false)}}> Would rather be anonymous ?</p>
                                     </form>
                                 </div>
@@ -488,7 +508,7 @@ export default function Form(){
                         </div>
 
                         {/* // right part  */}
-                        <div className="w-[50%] h-full bg-red-200 flex justify-center items-center"> 
+                        <div className="lg:w-[50%] w-[40%] h-full bg-red-200 c1:flex hidden justify-center items-center"> 
                             <img className="h-full w-full object-cover" alt="img" src="https://img.freepik.com/free-vector/setup-concept-illustration_114360-372.jpg?w=1380&t=st=1710445954~exp=1710446554~hmac=84899da8546e8970308b1fde3521e65e798ec5ed3b3dc32aecf864f52edf4085" />
                         </div>
                         
@@ -502,13 +522,13 @@ export default function Form(){
             </motion.div> 
             
 
-            <div className="fixed bottom-[30px] right-[30px]">
+            <div className="fixed c1:bottom-[30px]  sm:block right-[30px] hidden">
                 <div className="bg-black py-1 px-3">
                     <p className="text-[15px] text-white">Powered by | Querify</p>
                 </div>
             </div>
 
-            <div className={`max-w-[60%] my-4 mx-auto rounded-md border border-black`} style={{backgroundColor:`${form.visualData.background}`}}>
+            <div className={`lg:max-w-[850px] max-w-[90%] my-4 mx-auto rounded-md border border-black`} style={{backgroundColor:`${form.visualData.background}`}}>
 
                
                 <form  className="w-full my-2 p-5 flex flex-col gap-5" >
@@ -528,8 +548,8 @@ export default function Form(){
                             ))
                         }
                     </div>
-                    <div className="flex items-center justify-center mt-3">
-                        <button type="button" className="py-1 px-4 bg-black text-white rounded-md hover:bg-gray-700 transition-all duration-200 active:scale-[0.95]" onClick={()=> setPopup((prev)=> !prev) } >  Next </button>
+                    <div className="flex items-center justify-center mt-3 mb-7">
+                        <button type="button" className="py-1 px-4 bg-black xbs:w-[100px] w-full text-white rounded-md hover:bg-gray-700 shadow-lg transition-all duration-200 active:scale-[0.95]" onClick={()=> setPopup((prev)=> !prev) } >  Next </button>
                     </div>
                 </form>
             </div>

@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Insights from "../components/Insights";
 import ChartContainer from "../components/ChartContainer";
 import {motion, AnimatePresence} from "framer-motion"
+import { TiTick } from "react-icons/ti";
 export default function FormResults(){
 
     const [loading ,setLoading] = useState(false);
@@ -27,7 +28,31 @@ export default function FormResults(){
 
     const [selected, setSelected] = useState("insights");
 
-  const obj =   {
+
+
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
+
+    useEffect( ()=>{
+
+        const handleResize = ()=>{
+
+            const windowSize = window.innerWidth;
+
+            setScreenSize(windowSize);
+
+            console.log(windowSize);
+
+        }
+
+        window.addEventListener("resize", handleResize);
+        handleResize();
+
+        return ()=> window.removeEventListener("resize",handleResize);
+
+    },[])
+
+
+    const obj =   {
         
         "email":'gourav@gmial.com',
         "name":'gourav',
@@ -207,7 +232,7 @@ export default function FormResults(){
 
 
     return (
-        <div className="w-screen bg-[#fafafa] h-screen relative " >
+        <div className="w-screen  min-h-screen h-max relative bg-[#fafafa]" >
             <Navbar bgColor={"white"} border={1}/>
 
             {/* lower-navbar */}
@@ -256,7 +281,7 @@ export default function FormResults(){
                     <div className="loader  translate-x-[-50%] translate-y-[-50%]"></div>
                 </div>
                 :
-                <div className="w-[70%] mx-auto  h-max  py-[30px] top-[104px] relative " style={{height: "calc( 100vh - 106px )"}}>
+                <div className="sm:w-[70%] w-[90%] mx-auto   h-max  py-[30px] top-[104px] relative " style={{height: "calc( 100vh - 106px )"}}>
                     {
 
                     selected === "insights" 
@@ -265,15 +290,14 @@ export default function FormResults(){
                     :
                     selected === "visual"
                     ?
-                    <div className=" h-full w-full">
+                    <div className=" h-max min-h-screen w-full flex flex-col gap-[50px] ">
 
                     {
                         radioQues.map((que,idx)=>(
                             
-                            <div className="my-11  relative">
+                            <div className="my-11  relative  h-max">
 
-
-                                <ChartContainer form={form} que={que} idx={idx} chartData={chartData}/>
+                                <ChartContainer form={form} que={que} idx={idx} chartData={chartData}  screenSize={screenSize}/>
                             </div>
                         ))
                     }
@@ -300,12 +324,12 @@ export default function FormResults(){
                                 duration:0.5
                             }}
                         >
-                            <div className="mt-[25px] flex flex-col gap-5 ">
+                            <div className="mt-[25px] flex flex-col gap-5 w-full">
                                 <p className="text-[24px] tracking-wide font-light"> Response Summary </p> 
 
-                                <div className="flex justify-between" >
+                                <div className="flex justify-center gap-3 w-full" >
 
-                                    <div className="flex flex-col h-[352px] w-[704px]  bg-white rouned-md " style={{boxShadow:"0 1px 2px 0 rgba(0, 0, 0, 0.04), 0 2px 8px 0 rgba(0, 0, 0, 0.04)"}}>
+                                    <div className="flex flex-col h-[352px] c1:min-w-[704px] w-full  bg-white rouned-md " style={{boxShadow:"0 1px 2px 0 rgba(0, 0, 0, 0.04), 0 2px 8px 0 rgba(0, 0, 0, 0.04)"}}>
                                         <div className="w-full h-[98px] pt-[24px] px-[32px] flex flex-col gap-2">
 
                                             <div className="flex items-center  gap-4 bg-[#69B5FC] w-max px-1 py-[2px] rounded-md">
@@ -322,7 +346,7 @@ export default function FormResults(){
 
                                         </div>  
 
-                                        <div className="w-full px-[96px] pb-[56px] ">
+                                        <div className="w-full c1:px-[96px] px-[10px] pb-[56px] ">
 
                                             <div className="w-full max-h-[200px] mt-[10px] overflow-y-scroll" >
 
@@ -359,7 +383,7 @@ export default function FormResults(){
 
                                     {/* right part */}
 
-                                    <div className="flex flex-col gap-5 w-[256px] ">
+                                    <div className="lg:flex hidden flex-col gap-5 min-w-[256px] max-w-[256px]">
 
                                         <div className="p-[20px] w-full bg-white rounded-md flex gap-5">
                                             <div>
@@ -367,7 +391,13 @@ export default function FormResults(){
                                             </div>
                                             <div className="flex flex-col">
                                                 <p>Google Sheets</p>
-                                                <p className="text-[12px] ">Connect and send your data straight to a spreadsheet.</p>
+                                                <p className="text-[12px] ">{
+                                                    form.spreadsheetUrl ? 
+                                                    <p className="flex gap-3 mt-7 items-center text-[16px]"><TiTick className="fill-green-500 text-[24px]"/> Integrated</p>
+                                                    : 
+                                                    <p>Connect and send your data straight to a spreadsheet.</p>
+                                                    }
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="p-[20px] w-full bg-[#f0f0f0] rounded-md">
@@ -386,8 +416,6 @@ export default function FormResults(){
                                         
                                     </div>
                                 </div>
-
-                
 
                             </div>
                             

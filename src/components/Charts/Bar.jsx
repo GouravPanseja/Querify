@@ -1,6 +1,6 @@
 import { BarChart } from "@mui/x-charts";
 
-export default function Bar({form, que, idx,chartData}){
+export default function Bar({form, que, idx,chartData,screenSize}){
 
     return(
         <BarChart
@@ -19,7 +19,7 @@ export default function Bar({form, que, idx,chartData}){
                 }   
             ]}
             height={500}
-            width={800}
+            width={  (0.8*screenSize) > 800 ?    800 : (0.8*screenSize)}
         />
     )
 }
