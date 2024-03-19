@@ -52,7 +52,11 @@ import formNotStartedImg from "../assets/formNotStartedImg.png"
 import ResponseLimitImg from "../assets/ResponseLimitImg.png"
 import { FaCode } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
-import OtpImg from "../assets/OtpImg.png"
+import OtpImg from "../assets/OtpImg.png";
+import home9 from "../assets/home9.webp";
+import home10 from "../assets/home10.webp";
+import home11 from "../assets/home11.webp";
+import home12 from "../assets/Block_1.webp";
 export {
     IoPersonSharp,
     MdOutlineMailOutline,
@@ -109,4 +113,8 @@ export {
     FaCode,
     TiTick,
     OtpImg,
+    home9,
+    home10,
+    home11,
+    home12
 };

@@ -4,7 +4,7 @@ import { gsap,ScrollTrigger } from "gsap/all";
 import  animateVideo,{animate} from "../utils/animate"
 import mainVideo from "../assets/mainVideo.mp4";
 import { useNavigate } from "react-router-dom";
-
+import {home9,home10,home11,home12} from "../assets/assets"
 import {projects} from "../data/projects";
 import { animateProjects,scrollBlogPosts,scrollCircle,scrollDiscover } from "../utils/animate";
 import { blogPosts } from "../data/projects";
@@ -314,12 +314,12 @@ export default function Home(){
                             { projects.map((project,idx)=>(
 
                                 <div className={`project ${project.pos}`}>
-                                    <div className="image_container">
-                                        <img src={project.image} alt={`img_${idx}`} className="project_image"/>
+                                    <div className="image_container h-[250px] w-[320px] rounded-lg shadow-md">
+                                        <img src={project.image} alt={`img_${idx}`} className="project_image h-[250px] w-[320px] object-cover"/>
                                     </div>
                                     <div className="project_details flex items-center">
-                                            <p>{project.name}</p>
-                                            <p>{project.type}</p>
+                                            <p className="text-center text-[15px] w-full">{project.name}</p>
+                                           
                                     </div>
                                 </div>
                                 ))
@@ -345,38 +345,28 @@ export default function Home(){
                     <div ref={refBlog0} className="blog_post">
                         <div ref={refBlogImage0} className="post">
                             <div  className="post_image_container">
-                                <img src={blogPosts[0].image} alt="blogImg" className="blog_post_image"/>
+                                <img src={home9} alt="blogImg" className="blog_post_image"/>
                             </div>
                                         
-                            <div className="post_details">
-                                <p>{blogPosts[0].title}</p>
-                                <p>{blogPosts[0].time}</p>
-                            </div>
+
                         </div>
                     </div>  
 
                     <div ref={refBlog1} className="blog_post">
                         <div ref={refBlogImage1} className="post">
                             <div className="post_image_container">
-                                <img src={blogPosts[1].image} alt="blogImg" className="blog_post_image"/>
+                                <img src={home10} alt="blogImg" className="blog_post_image"/>
                             </div>
                                         
-                            <div className="post_details">
-                                <p>{blogPosts[1].title}</p>
-                                <p>{blogPosts[1].time}</p>
-                            </div>
+
                         </div>
                     </div>      
                     <div ref={refBlog2} className="blog_post">
                         <div ref={refBlogImage2} className="post">
                             <div className="post_image_container">
-                                <img src={blogPosts[2].image} alt="blogImg" className="blog_post_image"/>
+                                <img src={home12} alt="blogImg" className="blog_post_image"/>
                             </div>
-                                        
-                            <div className="post_details">
-                                <p>{blogPosts[2].title}</p>
-                                <p>{blogPosts[2].time}</p>
-                            </div>
+                                
                         </div>
                     </div>      
 
@@ -386,7 +376,7 @@ export default function Home(){
                 <section ref={refCircleSection} id="circle_section">
 
                     <div className="circle_sticky">
-                        <h2>TBI</h2>
+                        <h2>Q</h2>
                         <div className="circle_container">
                             <div ref={refCircle} className="circle">
 
