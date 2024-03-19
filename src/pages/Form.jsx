@@ -9,12 +9,15 @@ import useResponseStore from "../stores/ResponseStore";
 import {motion ,useAnimation} from "framer-motion";
 import { TextField,Select, MenuItem,InputLabel,FormControl } from "@mui/material";
 import {IoIosArrowRoundBack} from "../assets/assets"
+import { ClipLoader } from "react-spinners";
 
 
 
 export default function Form(){
 
     const [startTime, setStartTime] = useState(new Date().getTime());
+
+    const [loading, setLoading] =useState(false);
 
     const navigate = useNavigate();
 
@@ -58,6 +61,7 @@ export default function Form(){
     const fetchForm = async()=>{
 
         try{
+            setLoading(true);
 
             const response = await axios.post(`http://localhost:4000/api/v1/getForm`,{formId, viewInc : true});
 
@@ -122,7 +126,9 @@ export default function Form(){
                   secondary: '#FFFAEE',
                 },
               });
+
         }
+        setLoading(false);
 
     }
     console.log("responses" ,responses);
@@ -315,12 +321,8 @@ export default function Form(){
     return (
         
 
-        !form ?
-        <div className=" h-screen w-screen flex justify-center items-center">
-            <div className="loader  translate-x-[-50%] translate-y-[-50%]"></div>
-        </div>
-        
-
+        loading ?
+        <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />
         :
 
         <div className={`w-screen h-max min-h-screen `}>
@@ -528,11 +530,11 @@ export default function Form(){
                 </div>
             </div>
 
-            <div className={`lg:max-w-[850px] max-w-[90%] my-4 mx-auto rounded-md border border-black`} style={{backgroundColor:`${form.visualData.background}`}}>
+            <div className={`lg:max-w-[850px] max-w-[90%] my-4 mx-auto rounded-md border border-black`} style={{backgroundColor:`${form?.visualData.background}`}}>
 
                
                 <form  className="w-full my-2 p-5 flex flex-col gap-5" >
-                    <h1 className="text-center text-[30px] font-semibold mb-[40px]">{form.title}</h1>
+                    <h1 className="text-center text-[30px] font-semibold mb-[40px]">{form?.title}</h1>
                     <div className="flex flex-col gap-[40px]">
                         {
                             form?.data?.map((que, idx )=>(

@@ -14,6 +14,7 @@ import {motion} from "framer-motion";
 import OtherSubMenu from "../components/OtherSubMenu"
 import AddQues from "../components/AddQue";
 import {HiOutlineMenuAlt1} from "../assets/assets"
+import { ClipLoader } from "react-spinners";
 
 export default function Preview(){
 
@@ -61,6 +62,7 @@ export default function Preview(){
     const [template, setTemplate] = useState();
     const [customise, setIsCustomise] = useState(false);
     const [sideMenu, setSideMenu] = useState("design");
+    const [loading , setLoading] = useState(false);
 
     const [currentNav, setCurrentNav] = useState("preview")
 
@@ -83,7 +85,8 @@ export default function Preview(){
 
     const fetchTemplate = async ()=>{
 
-        try{
+        try{   
+            setLoading(true);
             const token = localStorage.getItem("token");
 
             const response =  await axios.post(`${process.env.REACT_APP_BASE_URL}/getTemplate`,{id}, {
@@ -137,10 +140,7 @@ export default function Preview(){
                 },
             });
         }
-
-        
-
-
+        setLoading(false);
     }
 
     useEffect( ()=>{
@@ -157,7 +157,7 @@ export default function Preview(){
 
 
     return(
-        <div className="w-screen min-h-screen h-max bg-[#fafafa]">
+        <div className="w-screen min-h-screen h-max bg-[#fafafa] relative">
 
             {/* Sidebar */}
             <div className={`sidebar fixed top-0 left-0 ${showSidebar ? "w-[256px]" : "w-0" }  h-screen p-0 overflow-x-hidden shadow-md bg-white    border `}>
@@ -322,61 +322,67 @@ export default function Preview(){
 
             
             {/* Main */}
-            <div className={`preview-main w-screen ${showSidebar ? "ml-[256px]": "mx-auto"} h-max `} >
+            <div className={`preview-main w-screen ${showSidebar ? "ml-[256px]": "mx-auto"} min-h-max h-max  `} >
 
+
+                {
+                    loading?
+                    <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" /> :
 
                     <div className={` ${showSidebar ? "w-[75%] " : "w-[90%]" }  h-max mx-auto pt-[100px] relative `}>
 
-                        <div className="flex flex-col gap-2 rounded-lg shadow-lg justify-center relative border bg-center bg-contain bg-no-repeat z-[10] bg-white"  style={{backgroundColor:formColor, background:`url(${visualData.backgroundImage})`}}>
-                            {
-                                ques.length ===0 &&
-                                <AddQues visible="block"/>
-                            }
-                            
-                            
-                            <div className="absolute top-7 right-7 h-[100px] w-[100px] flex justify-center items-center">
+                            <div className="flex flex-col gap-2 rounded-lg shadow-lg justify-center relative border bg-center bg-contain bg-no-repeat z-[10] bg-white"  style={{backgroundColor:formColor, background:`url(${visualData.backgroundImage})`}}>
                                 {
-                                    logo &&
-                                    <img src={URL.createObjectURL(logo)} alt="logo" className={`object-cover  w-full h-full`} style={{borderRadius:`${visualData.logoBorderRadius}%`}}/>
-                                }   
-                            
-                            </div>
-
-                            
-                            <h1 className=" text-center mb-7 pt-5">
-                                {
-                                    !edit ?
-                                    <p className="hover:bg-slate-200 w-max mx-auto sm:text-[22px] text-[16px]" style={{fontFamily:visualData.fontFamily}}>{title}</p> 
-                                    :
-                                    <input
-                                        type="text"
-                                        className="text-center rounded-md bg-slate-200"
-                                        value={title}
-                                        onChange={(e)=> updateTitle(e.target.value)}
-                                    />
+                                    ques.length ===0 &&
+                                    <AddQues visible="block"/>
                                 }
-                            
-                            </h1>
-                        {
-                            ques?.map((que, idx )=>(
                                 
-                                <div className="w-full my-7 p-5" >
+                                
+                                <div className="absolute top-7 right-7 h-[100px] w-[100px] flex justify-center items-center">
                                     {
-                                        que.type === "text" ?       <Text que={que}  idx={idx+1}/> : 
-                                        que.type === "textarea" ?   <Textarea que={que} idx={idx+1}/> : 
-                                        que.type === "radio" ?      <Radio que={que} idx={idx+1}/> :
-                                        que.type === "checkbox" ?   <Checkbox que={que} idx={idx+1}/> : 
-                                        que.type === "range" ?      <Range que={que} idx={idx+1}/> : 
-                                        que.type === "date" ?       <Date que={que} idx={idx+1}/> : 
-                                        que.type === "matrix" ?     <Matrix que={que} idx={idx+1}/> :
-                                        que.type === "email" ?      <Email que={que} idx={idx+1}/> :
-                                        null
-                                    }
+                                        logo &&
+                                        <img src={URL.createObjectURL(logo)} alt="logo" className={`object-cover  w-full h-full`} style={{borderRadius:`${visualData.logoBorderRadius}%`}}/>
+                                    }   
+                                
                                 </div>
-                            ))
-                        }
-                        </div>
+
+                                
+                                <h1 className=" text-center mb-7 pt-5">
+                                    {
+                                        !edit ?
+                                        <p className="hover:bg-slate-200 w-max mx-auto sm:text-[22px] text-[16px]" style={{fontFamily:visualData.fontFamily}}>{title}</p> 
+                                        :
+                                        <input
+                                            type="text"
+                                            className="text-center rounded-md bg-slate-200"
+                                            value={title}
+                                            onChange={(e)=> updateTitle(e.target.value)}
+                                        />
+                                    }
+                                
+                                </h1>
+                            {
+                                ques?.map((que, idx )=>(
+                                    
+                                    <div className="w-full my-7 p-5" >
+                                        {
+                                            que.type === "text" ?       <Text que={que}  idx={idx+1}/> : 
+                                            que.type === "textarea" ?   <Textarea que={que} idx={idx+1}/> : 
+                                            que.type === "radio" ?      <Radio que={que} idx={idx+1}/> :
+                                            que.type === "checkbox" ?   <Checkbox que={que} idx={idx+1}/> : 
+                                            que.type === "range" ?      <Range que={que} idx={idx+1}/> : 
+                                            que.type === "date" ?       <Date que={que} idx={idx+1}/> : 
+                                            que.type === "matrix" ?     <Matrix que={que} idx={idx+1}/> :
+                                            que.type === "email" ?      <Email que={que} idx={idx+1}/> :
+                                            null
+                                        }
+                                    </div>
+                                ))
+                            }
+                            </div>
                     </div>
+
+                }
 
 
             </div>

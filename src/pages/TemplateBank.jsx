@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import TempSubMenu from "../components/TempSubMenu";
 import { MagnifyingGlass } from "react-loader-spinner";
 import { gsap,ScrollTrigger } from "gsap/all";
+import { ClipLoader } from "react-spinners";
 export default function TemplateBank(){
     const controls = useAnimation();
 
@@ -269,16 +270,7 @@ export default function TemplateBank(){
                         {
                             loading ?
                             <div className="absolute top-[50%] left-[50%]">
-                            <MagnifyingGlass
-                                visible={true}
-                                height="80"
-                                width="80"
-                                ariaLabel="magnifying-glass-loading"
-                                wrapperStyle={{}}
-                                wrapperClass="magnifying-glass-wrapper"
-                                glassColor="gray"
-                                color="#000"
-                            />
+                                <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />
                             </div>
 
                             

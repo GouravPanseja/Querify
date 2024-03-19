@@ -272,7 +272,7 @@ export default function Home(){
                                 <span className="reveal_span_main">Y</span>
                             </h1>
                         </div>
-                        <div onClick={()=> navigate("/signup")} className="hero_cta text-[2rem] flex items-center"> ( SIGN UP )</div>
+                        <div onClick={()=> navigate("/signup")} className="hero_cta text-[2rem] flex items-center cursor-pointer"> ( SIGN UP )</div>
                     </div>
                 </section> 
                 
@@ -280,7 +280,7 @@ export default function Home(){
                 <section id="about">
                     <div className="about_container">
                         <div className="about_text">
-                            <p>WELCOME TO FORM STUDIO – WHERE BRANDS DISCOVER THEIR RHYTHM, CREATIVITY COMES ALIVE, AND IDEAS KNOW HOW TO HAVE A GOOD TIME. WE’RE THE STUDIO THAT FEARLESSLY BENDS THE RULES AND CHAMPIONS THE ELEGANCE OF SIMPLICITY. RENOWNED BRANDS CHOOSE US BECAUSE WE MAINTAIN THE BRAND LANGUAGE AND STILL PUSH BOUNDARIES.</p>
+                            <p>Elevate your surveying experience with Querify. Our platform offers a wide range of professionally crafted forms across all categories. From customer feedback to event polls, Querify provides intuitive tools to create impactful surveys effortlessly. Join us to unlock valuable insights and drive meaningful connections today.</p>
                         </div>
                     </div>
                 </section>  

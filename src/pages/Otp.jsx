@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import useSignupStore from "../stores/SignupStore";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
+import { OtpImg } from "../assets/assets";
 export default function Otp(){
 
     const navigate = useNavigate();
@@ -199,11 +200,12 @@ export default function Otp(){
                 </div> 
             </form>
 
-            <div className="otp-right relative flex gap-3 flex-col items-center  justify-center w-0 md:w-[45%] overflow-hidden bg-cover bg-center no-repeat" style={{backgroundImage: `url(${image})`}}>   
+            <div className="otp-right relative flex gap-3 flex-col items-center bg-[#191919]  justify-center w-0 md:w-[45%] overflow-hidden bg-cover bg-center no-repeat" >   
 
-                    
-                <div className=" text-center">
-                    <p className="text-white text-[1.8rem] ">Sign up <br/> and come on in</p>           
+                <div className=" text-center flex flex-start ">
+                    <img className="text-white text-[1.8rem]  translate-x-[-70px]" src={OtpImg} style={{filter: "drop-shadow(5px 10px 20px #876e35)"}}/>
+                        
+ 
                 </div>
 
               

@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import useUserStore from "../stores/UserStore";
 import {motion} from "framer-motion"
+import { Oval } from "react-loader-spinner";
 export default function Login(){
     const navigate = useNavigate();
 
@@ -116,16 +117,28 @@ export default function Login(){
 
 
     return (
-        <div className="bg-[#191919] h-[100vh]  w-full flex flex-row ">
+        <motion.div 
+            className="bg-[#191919] h-[100vh]  w-full flex flex-row "
+        >
 
             {/* left part */}
-            <div className="w-[800px]  bg-white md:rounded-tr-xl md:rounded-br-xl  flex items-center">
+            <motion.div 
+                className="lg:w-[55%] w-full  flex items-center  bg-white lg:rounded-tr-xl lg:rounded-br-xl "
+                key="signup"
+                animate={{opacity:1}}
+                initial={{opacity:0.97}}
+                transition={{
+                    duration:0.5,
+                    ease:"easeInOut"
+                }}
+                exit={{opacity:0}}
+            >
 
                 
-                <form onSubmit={formSubmit} className="w-full  p-[20px] flex flex-col justify-center items-center ">
+                <form onSubmit={formSubmit} className="w-full  p-[20px] flex flex-col justify-center items-center my-auto ">
 
                     {/* heading */}
-                    <div className="flex flex-col justify-center items-center gap-7">
+                    <div className="flex flex-col justify-center items-center gap-4">
                         <h2 className="heading">Querify</h2>
                         <p className=" text-[0.8rem] sm:[1rem] md:text-[1.3rem] font-extralight text-center text-[#5E5E5E]">Hello, who's this ? </p>
                     </div>
@@ -136,7 +149,7 @@ export default function Login(){
             
                         {/* email */}
                         <p className="min-h-7 text-red-500"></p>
-                        <div className="flex gap-5  md:w-[40%] items-center justify-center border-[1px] border-black px-2 rounded-md">
+                        <div className="flex gap-5 xxs:min-w-[300px] xxs:max-w-[300px] min-w-[250px] max-w-[250px] items-center justify-center border-[1px] border-black px-2 rounded-md">
                           
                             <label htmlFor="email">
                                 <MdOutlineMailOutline className="text-xl"/>
@@ -155,7 +168,7 @@ export default function Login(){
                         
                         {/* password */}
                         <p className="min-h-7 text-red-500"></p>
-                        <div className="flex gap-5  md:w-[40%] items-center justify-center border-[1px] border-black px-2 rounded-md">
+                        <div className="flex gap-5  xxs:min-w-[300px] xxs:max-w-[300px] min-w-[250px] max-w-[250px] items-center justify-center border-[1px] border-black px-2 rounded-md">
                             
                             <label htmlFor="pass">
                                 <IoIosLock className="text-xl"/>
@@ -180,13 +193,13 @@ export default function Login(){
                             
                         </div>
 
-                        <div className="mt-2  md:hidden">
+                        <div className="mt-2  md:hidden xxs:min-w-[300px] xxs:max-w-[300px] min-w-[250px] max-w-[250px]">
                             <p className="text-sm text-gray-500"> 
-                                Don't have an account ? <Link to="/login" className="underline text-black">Login</Link>
+                                Don't have an account ? <Link to="/signup" className="underline text-black">Signup</Link>
                             </p>
                         </div>
 
-                        <div className="md:w-[40%] mt-4">
+                        <div className="xxs:min-w-[300px] xxs:max-w-[300px] min-w-[250px] max-w-[250px] mt-4 ">
                             <div className="flex gap-4 items-baseline">
                                 <input
                                     type="checkbox"
@@ -205,12 +218,17 @@ export default function Login(){
                         
                  
                         {/* sign in button */}
-                        <div className="flex md:w-[40%] items-center justify-center mt-7">
+                        <div className="flex xxs:min-w-[300px] xxs:max-w-[300px] min-w-[250px] max-w-[250px] items-center justify-center mt-7">
                             <button 
-                                className="bg-black text-white px-[4rem] hover:bg-gray-800 transition-all duration-100 py-3 rounded-md active:scale-[.98] disabled:bg-gray-400"
+                                className="bg-black w-full text-white px-[4rem] hover:bg-gray-800 transition-all duration-100 py-3 rounded-md active:scale-[.98] disabled:bg-gray-400"
                                 disabled = {isLoading}
                             >
-                                <p className="no-wrap text-white">{ isLoading ? "loading..." : "Sign In"}</p>
+                                <p className="no-wrap text-white">{ 
+                                    isLoading ? 
+                                    <Oval visible={true} height="25" width="25" color="#4fa94d" ariaLabel="oval-loading" wrapperStyle={{}} wrapperClass="" /> 
+                                    : 
+                                    "Signin to continue"
+                                    }</p>
                             </button>
                         </div>     
                         
@@ -222,22 +240,22 @@ export default function Login(){
                         </div>
                         
                         {/* other signup options */}
-                        <div className="flex gap-5 md:w-[45%] items-center justify-between">
-                            <div className="w-[45%] py-2 px-3 flex justify-between items-center border-[1px] border-black rounded-lg cursor-pointer">
+                        <div className="flex flex-row gap-5 md:w-[45%] items-center justify-between">
+                            <div className="max-w-[150px] py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
                                 <img 
                                     src={googleLogo}
                                     alt="google logo"
                                     className="h-8 w-8 "
                                 /> 
-                                <p> Google </p>
+                                <p className="xxs:block hidden mx-2"> Google </p>
                             </div>
-                            <div className="w-[45%] py-2 px-3 flex justify-between items-center border-[1px] border-black rounded-lg cursor-pointer">
+                            <div className="max-w-[150px] py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
                                 <img 
                                     src={microsoftLogo}
                                     alt="microsoft logo object-cover"
                                     className="h-8 w-8 object-cover"
                                 /> 
-                                <p> Microsoft </p>
+                                <p className="xxs:block hidden mx-2"> Microsoft </p>
                             </div>
                       
                            
@@ -247,20 +265,23 @@ export default function Login(){
 
                 </form> 
                  
-            </div>
+            </motion.div>
 
             {/* right part */}
             <motion.div 
                 key="signup"
                 animate={{opacity:1}}
-                initial={{opacity:0.5}}
-                transition={{duration:0.5}}
+                initial={{opacity:0.97}}
+                transition={{
+                    duration:0.5,
+                    ease:"easeInOut"
+                }}
                 exit={{opacity:0}}
                 className="lg:flex hidden gap-3 flex-col items-center  justify-center w-[45%] overflow-hidden relative">   
 
                 <div className="absolute top-3 right-0 flex items-center gap-5 mr-4">
-                    <p className="text-white text-sm font-extralight">Already have an account ? </p>
-                    <Link to="/login" className="text-white font-extralight border-[1px] border-white px-2"> Login </Link>
+                    <p className="text-white text-sm font-extralight">New to Querify ? </p>
+                    <Link to="/signup" className="text-white font-extralight border-[1px] border-white px-2"> Signup </Link>
                 </div>
                 <div className=" text-center">
                     <p className="text-white text-[2.3rem] ">Sign up <br/> and come on in</p>
@@ -278,6 +299,6 @@ export default function Login(){
                 <p className="text-gray-200">&#169; Querify</p>
             </motion.div>
 
-        </div>
+        </motion.div>
     )
 }

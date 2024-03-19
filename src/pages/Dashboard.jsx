@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import DropDownD from "../components/DropDownD";
 import {motion} from "framer-motion"
 import usePopupStore from "../stores/PopupStore";
-
+import {ClipLoader} from "react-spinners"
 export default function Dashboard(){
     const navigate = useNavigate();
 
@@ -24,7 +24,8 @@ export default function Dashboard(){
         showLogout: state.showLogout,
         setShowLogout: state.setShowLogout,
     }));
-
+    
+    
     const [activeSidebar, setActiveSidebar] = useState(false);
     const [loading, setLoading] = useState(false);
     const [forms, setForms] = useState([]);
@@ -152,7 +153,7 @@ export default function Dashboard(){
     },[])
 
     return (
-        <div className="w-screen min-h-screen h-max  bg-[#fafafa] pt-[54px]" >
+        <div className="w-screen min-h-screen h-max  bg-[#fafafa] pt-[54px] relative" >
 
             <Navbar bgColor={"white"} border={1}/>
 
@@ -274,10 +275,12 @@ export default function Dashboard(){
                 
                 
                 {/* All Cards */}   
-                <div className="flex flex-wrap gap-4 mt-[120px]">
+                <div className="flex flex-wrap gap-4 mt-[120px] ">
 
                     {
-                        formsData &&
+                        loading ?
+                        <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />:
+
                         formsData.map((form)=>(
 
                             <FormCard form={form} key={form._id}/>

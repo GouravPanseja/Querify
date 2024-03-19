@@ -15,6 +15,7 @@ import Iframe from 'react-iframe'
 import useUserStore from "../stores/UserStore";
 import { Oval } from "react-loader-spinner";
 import { FaCode } from "../assets/assets";
+import { ClipLoader } from "react-spinners";
 export default function ShareForm(){
 
     const [showSidebar, setShowSidebar] = useState(false);
@@ -582,9 +583,7 @@ export default function ShareForm(){
 
 
             :
-                <div className=" h-screen w-screen flex justify-center items-center">
-                    <div className="loader  translate-x-[-50%] translate-y-[-50%]"></div>
-                </div>
+            <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />
         }
 
            

@@ -6,6 +6,7 @@ import Insights from "../components/Insights";
 import ChartContainer from "../components/ChartContainer";
 import {motion, AnimatePresence} from "framer-motion"
 import { TiTick } from "react-icons/ti";
+import { ClipLoader } from "react-spinners";
 export default function FormResults(){
 
     const [loading ,setLoading] = useState(false);
@@ -87,7 +88,7 @@ export default function FormResults(){
 
     const fetchResponses = async()=>{
 
-
+        
         try{
 
 
@@ -108,12 +109,12 @@ export default function FormResults(){
         catch(err){
             console.log(err);
         }
-
+        setLoading(false);
     }
 
     const fetchForm = async()=>{
         try{
-
+            setLoading(true);
             const token = localStorage.getItem("token");
 
 
@@ -127,7 +128,8 @@ export default function FormResults(){
 
             setForm(result.data.data);
         }
-        catch{
+        catch(err){
+            console.log(err);
 
         }
     }
@@ -135,10 +137,10 @@ export default function FormResults(){
     useEffect(()=>{
 
 
-        setLoading(true);
+
         fetchForm();
         fetchResponses();
-        setLoading(false);
+        
     },[])
 
     useEffect(()=>{
@@ -277,9 +279,7 @@ export default function FormResults(){
 
             {
                 loading ?
-                <div className=" h-screen w-screen flex justify-center items-center">
-                    <div className="loader  translate-x-[-50%] translate-y-[-50%]"></div>
-                </div>
+                <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />
                 :
                 <div className="sm:w-[70%] w-[90%] mx-auto   h-max  py-[30px] top-[104px] relative " style={{height: "calc( 100vh - 106px )"}}>
                     {

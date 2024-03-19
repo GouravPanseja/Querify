@@ -8,7 +8,6 @@ import googleLogo from "./googleLogo.png";
 import microsoftLogo from "./microsoftLogo.png";
 import signupImage from "./signupImage.webp";
 import { RiErrorWarningLine } from "react-icons/ri";
-import signinImage  from "./signinImage.webp"
 import { IoIosSearch } from "react-icons/io";
 import { IoMdAdd } from "react-icons/io";
 import { ImProfile } from "react-icons/im";
@@ -53,6 +52,7 @@ import formNotStartedImg from "../assets/formNotStartedImg.png"
 import ResponseLimitImg from "../assets/ResponseLimitImg.png"
 import { FaCode } from "react-icons/fa";
 import { TiTick } from "react-icons/ti";
+import OtpImg from "../assets/OtpImg.png"
 export {
     IoPersonSharp,
     MdOutlineMailOutline,
@@ -64,7 +64,6 @@ export {
     microsoftLogo,
     signupImage,
     RiErrorWarningLine,
-    signinImage,
     IoIosSearch,
     IoMdAdd,
     ImProfile,
@@ -108,5 +107,6 @@ export {
     formNotStartedImg,
     ResponseLimitImg,
     FaCode,
-    TiTick
+    TiTick,
+    OtpImg,
 };

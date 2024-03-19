@@ -167,19 +167,24 @@ export default function Signup(){
             <motion.div 
                 key="signup"
                 animate={{opacity:1}}
-                initial={{opacity:0.5}}
-                transition={{duration:0.5}}
+                initial={{opacity:0.97}}
+                transition={{
+                    duration:0.5,
+                    ease:"easeInOut"
+                }}
                 exit={{opacity:0}}
                 className="lg:w-[55%] w-full  flex items-center  bg-white lg:rounded-tr-xl lg:rounded-br-xl ">
 
                 
                 <form onSubmit={handleSubmit(formSubmit)} className="w-full  p-[20px] flex flex-col justify-center items-center my-auto ">
-                
+
+                    {/* heading */}
                     <div className="flex flex-col justify-center items-center gap-7">
                         <h2 className="heading">Register</h2>
                         <p className=" text-[0.8rem] sm:[1rem] lg:text-[1.3rem] font-extralight text-center text-[#5E5E5E]">Get better data with conversational forms, surveys,<br/> quizzes & more.</p>
                     </div>
-                
+
+                    {/* fields */}
                     <div className="w-full flex flex-col  items-center justify-center ">
                         
                       
@@ -320,7 +325,7 @@ export default function Signup(){
                         </div>
 
                         <div className="flex flex-row gap-5 md:w-[45%] items-center justify-between">
-                            <div className="max-w-[150px] min- py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
+                            <div className="max-w-[150px] py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
                                 <img 
                                     src={googleLogo}
                                     alt="google logo"
@@ -350,8 +355,11 @@ export default function Signup(){
             <motion.div 
                 key="signup"
                 animate={{opacity:1}}
-                initial={{opacity:0.5}}
-                transition={{duration:0.5}}
+                initial={{opacity:0.97}}
+                transition={{
+                    duration:0.5,
+                    ease:"easeInOut"
+                }}
                 exit={{opacity:0}}
                 className="lg:flex hidden gap-3 flex-col items-center  justify-center w-[45%] overflow-hidden relative">   
 
