@@ -31,17 +31,15 @@ function App() {
 
         onCommand: ({command,page}) => {
 
-          
-
           if (command === "navigateRequest"){
 
             page = page.toLowerCase();
             
-            if( page ==='login' || page ==='signup' || page ==='templateBank'){
+            if( page !== 'home'){
               console.log("navigate request recieved")
               navigate(`/${page}`);
             }
-            else if(page ==='home'){
+            else{
               navigate('/');
             }
           }
