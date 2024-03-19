@@ -388,8 +388,8 @@ export default function Home(){
                 {/* Discover */}
                 <section id="discover">
                     <div ref={refDiscoverContainer} className="discover_container">
-                        <p ref={refDiscoverTextLeft} className="text_left">THIS SITE WAS DESIGNED BY FAVORITE X</p>
-                        <p ref={refDiscoverTextRight} className="text_right">EXLUSIVE FOR THE BRAND IDENTITY</p>
+                        <p ref={refDiscoverTextLeft} className="text_left">THIS SITE WAS DESIGNED BY ********</p>
+                        <p ref={refDiscoverTextRight} className="text_right">LET'S SURVEY THE FUTURE TOGETHER</p>
 
                         <div className="mt-7">
                             <button className="discover_button">DISCOVER</button>
