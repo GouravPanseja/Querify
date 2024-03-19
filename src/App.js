@@ -17,20 +17,44 @@ import Bot from "./components/Bot"
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import useResponseStore from './stores/ResponsiveStore';
+import alanBtn from '@alan-ai/alan-sdk-web';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
 
-  // const setScreenSize =  useResponseStore( (state)=> state.setScreenSize);
+  const navigate = useNavigate();
 
-  // const handelScroll = ()=>{
-  //   setScreenSize(window.scrollY);
-  //   console.log(window.scrollY);
-  // }
-  // useEffect(()=>{
-  //   console.log('yes');
-  //   window.addEventListener('scroll', handelScroll);
+  useEffect(() => {
 
-  // },[])
+    alanBtn({
+        key: '39a0ed8f84503f707c20590bc5921e5d2e956eca572e1d8b807a3e2338fdd0dc/stage',
+
+        onCommand: ({command,page}) => {
+
+          
+
+          if (command === "navigateRequest"){
+
+            page = page.toLowerCase();
+            
+            if( page ==='login' || page ==='signup' || page ==='templateBank'){
+              console.log("navigate request recieved")
+              navigate(`/${page}`);
+            }
+            else if(page ==='home'){
+              navigate('/');
+            }
+          }
+          else if( command==="back"){
+            console.log("fjksal;")
+            navigate(-1);
+          }
+    }});
+    
+  }, []);
+
+
+
   return (
     <div>
 
