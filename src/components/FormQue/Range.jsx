@@ -35,7 +35,7 @@ export default function  Range({que,form,idx}){
                     type="range" 
                     min={que.rangeMin} 
                     max={que.rangeMax} 
-                    className="slider w-full"
+                    className="slider que w-full"
                     style={{borderColor:form.visualData.buttonColor, fontFamily:form.visualData.fontFamily}}
                     value={responses[`q${idx-1}`]}
                     onChange={(e)=> updateResponses({[`q${idx-1}`] : e.target.value})}

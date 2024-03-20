@@ -21,7 +21,7 @@ export default function Dropdown (){
     const arr = ["Education" , "Healthcare","Customer","Government" ,"Market", "Diversity", "Covid-19", "All"]
  
     return(
-        <div className={` sm:h-full h-[50px] sm:w-[240px] w-full rounded-md ${isDropDown && "rounded-b-[0px]"} bg-[#ffffff] cursor-pointer relative z-[999999]]`} >
+        <div className={` sm:h-full h-[50px] sm:w-[240px] w-full rounded-md ${isDropDown && "rounded-b-[0px]"} bg-[#ffffff] cursor-pointer relative z-[9999]]`} >
 
             <div className={`flex justify-between items-center w-full sm:h-full h-[50px] shadow-md transition-all duration-200  border-gray-400 rounded-md `}  onClick={()=> setIsDropDown((prev)=>!prev)}>
                 <p className="ml-2 text-[14px]">

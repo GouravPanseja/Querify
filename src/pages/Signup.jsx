@@ -324,7 +324,7 @@ export default function Signup(){
                             <div className="bg-gray-400 h-[1px] w-full"></div>
                         </div>
 
-                        <div className="flex flex-row gap-5 md:w-[45%] items-center justify-between">
+                        <div className="flex flex-row gap-5 md:w-[45%] items-center justify-center">
                             <div className="max-w-[150px] py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
                                 <img 
                                     src={googleLogo}

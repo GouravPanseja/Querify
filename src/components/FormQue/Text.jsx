@@ -32,7 +32,7 @@ export default function  Text({que,form,idx}){
             <div className="pb-[20px]">
                 <input 
                     type="text"
-                    className="border max-w-max min-w-[60%] h-[40px] p-2 rounded-md"
+                    className="border que max-w-max min-w-[60%] h-[40px] p-2 rounded-md"
                     style={{fontSize:form.visualData.fontSize}}
                     value={responses[`q${idx-1}`]}
                     onChange={(e)=> updateResponses({[`q${idx-1}`] : e.target.value})}

@@ -29,7 +29,7 @@ export default function  Radio({que,form,idx}){
                         <label className="flex gap-3" htmlFor={`${idx} + ${optIdx}`} > 
                             <input 
                                 type="radio" 
-                                className="border"
+                                className="border que"
                                 required={true}
                                 name={`que${idx}`}  
                                 id={`${idx} + ${optIdx}`} 

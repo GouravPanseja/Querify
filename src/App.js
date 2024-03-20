@@ -34,7 +34,11 @@ function App() {
           if (command === "navigateRequest"){
 
             page = page.toLowerCase();
-            
+
+            console.log(page);
+
+            if(page === "template") page = "templateBank";
+            if(page === "sign up") page = "signup";
             if( page !== 'home'){
               console.log("navigate request recieved")
               navigate(`/${page}`);

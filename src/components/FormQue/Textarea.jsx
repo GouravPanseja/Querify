@@ -29,7 +29,7 @@ export default function Textarea({que,form,idx}){
 
             <div>
                 <textarea 
-                    className="border w-[60%] h-[40px] p-2 rounded-md border-gray-800"
+                    className="border w-[60%] que h-[40px] p-2 rounded-md border-gray-800"
                     style={{fontSize:form.visualData.fontSize}}
                     value={responses[`q${idx-1}`]}
                     onChange={(e)=> updateResponses({[`q${idx-1}`] : e.target.value})}

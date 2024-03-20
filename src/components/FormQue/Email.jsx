@@ -26,7 +26,7 @@ export default function  Email({form,que,idx}){
             <div>
                 <input 
                     type="email"
-                    className="border w-[60%] h-[40px] p-2 rounded-md"
+                    className="border w-[60%] h-[40px] p-2 rounded-md que"
                     style={{fontSize:form.visualData.fontSize}}
                     value={responses[`q${idx-1}`]}
                     onChange={(e)=> updateResponses({[`q${idx-1}`] : e.target.value})}

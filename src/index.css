@@ -4,6 +4,7 @@
 
 *{
     scroll-behavior: smooth;
+    color:black;
 }
 .otp-inp input{
     background: #a29a83;

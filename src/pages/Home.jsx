@@ -4,11 +4,11 @@ import { gsap,ScrollTrigger } from "gsap/all";
 import  animateVideo,{animate} from "../utils/animate"
 import mainVideo from "../assets/mainVideo.mp4";
 import { useNavigate } from "react-router-dom";
-import {home9,home10,home11,home12} from "../assets/assets"
+import {home9,home10,home11,home12, HeroVid} from "../assets/assets"
 import {projects} from "../data/projects";
 import { animateProjects,scrollBlogPosts,scrollCircle,scrollDiscover } from "../utils/animate";
 import { blogPosts } from "../data/projects";
-
+import endVid from "../assets/endVid.mp4"
 
 export default function Home(){
 
@@ -272,7 +272,7 @@ export default function Home(){
                                 <span className="reveal_span_main">Y</span>
                             </h1>
                         </div>
-                        <div onClick={()=> navigate("/signup")} className="hero_cta text-[2rem] flex items-center cursor-pointer"> ( SIGN UP )</div>
+                        <div onClick={()=> navigate("/signup")} className="hero_cta text-[2rem] flex items-center cursor-pointer px-2 rounded-xl hover:bg-black hover:text-white transition-all duration-500"> ( SIGN UP )</div>
                     </div>
                 </section> 
                 
@@ -293,7 +293,7 @@ export default function Home(){
                     
                     <div ref={refTrigger} className="video_sticky">
                        
-                        <video className="main_video" ref={refVideo}  autoPlay={true} muted={true} loop={true} playsInline={true} src={mainVideo}></video>
+                        <video className="main_video" ref={refVideo}  autoPlay={true} muted={true} loop={true} playsInline={true} src={HeroVid}></video>
                         
                         <div className="video_text_overlay">
                             
@@ -402,7 +402,7 @@ export default function Home(){
                 <section id="end_video">
                     <div class="shim"></div>
                     <div className="end_video_container">
-                    <video className="end_video"   autoPlay={true} muted={true} loop={true} playsInline={true} src="https://framerusercontent.com/assets/sagu9WJMRc7UvZaZc4N2cUQ68Z4.mp4"></video>
+                    <video className="end_video"   autoPlay={true} muted={true} loop={true} playsInline={true} src={endVid}></video>
                     </div>
                 </section>
             

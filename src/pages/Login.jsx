@@ -240,7 +240,7 @@ export default function Login(){
                         </div>
                         
                         {/* other signup options */}
-                        <div className="flex flex-row gap-5 md:w-[45%] items-center justify-between">
+                        <div className="flex flex-row gap-5 md:w-[45%] items-center justify-center">
                             <div className="max-w-[150px] py-2 px-3 flex justify-between items-center xxs:border-[1px] border-black rounded-lg cursor-pointer">
                                 <img 
                                     src={googleLogo}

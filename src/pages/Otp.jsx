@@ -203,7 +203,7 @@ export default function Otp(){
             <div className="otp-right relative flex gap-3 flex-col items-center bg-[#191919]  justify-center w-0 md:w-[45%] overflow-hidden bg-cover bg-center no-repeat" >   
 
                 <div className=" text-center flex flex-start ">
-                    <img className="text-white text-[1.8rem]  translate-x-[-70px]" src={OtpImg} style={{filter: "drop-shadow(5px 10px 20px #876e35)"}}/>
+                    <img className="text-white text-[1.8rem]  translate-x-[-90px]" src={OtpImg} style={{filter: "drop-shadow(5px 5px 5px #876e35)"}}/>
                         
  
                 </div>

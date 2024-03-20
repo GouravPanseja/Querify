@@ -57,6 +57,7 @@ import home9 from "../assets/home9.webp";
 import home10 from "../assets/home10.webp";
 import home11 from "../assets/home11.webp";
 import home12 from "../assets/Block_1.webp";
+import HeroVid from "../assets/HeroVid.mp4"
 export {
     IoPersonSharp,
     MdOutlineMailOutline,
@@ -116,5 +117,6 @@ export {
     home9,
     home10,
     home11,
-    home12
+    home12,
+    HeroVid
 };

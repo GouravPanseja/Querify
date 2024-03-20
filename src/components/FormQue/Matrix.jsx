@@ -52,6 +52,7 @@ export default function  Matrix({form,que,idx}){
                                                 <input 
                                                     type="radio" 
                                                     name={row + rowIdx}
+                                                    className="que"
                                                     style={{fontSize:form.visualData.fontSize}}
                                                     value={{row : col}}
                                                     onChange={(e) => {
