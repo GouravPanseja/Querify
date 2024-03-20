@@ -277,19 +277,15 @@ export default function TemplateBank(){
                             :
                             category === "all" ?
                             <div className="sm:mt-0 mt-[60px]">
-
-                                {   
-                                    marketTemps.length !==0  &&
-                                    <TemplateContainer templates={marketTemps}/>
-                                }
                                 {   
                                     educationalTemps.length !==0  &&
                                     <TemplateContainer templates={educationalTemps}/>
                                 }
                                 {   
-                                    healthCareTemps.length !==0  &&
-                                    <TemplateContainer templates={healthCareTemps}/>
+                                    marketTemps.length !==0  &&
+                                    <TemplateContainer templates={marketTemps}/>
                                 }
+                                
                                 {   
                                     customerTemps.length !==0  &&
                                     <TemplateContainer templates={customerTemps}/>
@@ -298,6 +294,10 @@ export default function TemplateBank(){
                                     diversityTemps.length !==0  &&
                                     <TemplateContainer templates={diversityTemps}/>
                                 }
+                                {   
+                                    healthCareTemps.length !==0  &&
+                                    <TemplateContainer templates={healthCareTemps}/>
+                                }                                
                                 
                                 {   
                                     governmentTemps.length !==0  &&

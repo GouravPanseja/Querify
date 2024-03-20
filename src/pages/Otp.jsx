@@ -157,7 +157,23 @@ export default function Otp(){
     return(
         <div className="bg-[#ebecee] h-[100vh] w-full flex flex-row">
             
-            <form onSubmit={formSubmit} className="w-[800px]  bg-[#fff] md:rounded-tr-xl md:rounded-br-xl flex items-start justify-center ">
+            <form onSubmit={formSubmit} className="w-[800px]  bg-[#fff] md:rounded-tr-xl md:rounded-br-xl flex items-start justify-center relative">
+
+                <div className="flex gap-3 absolute top-2 right-2 ">
+                    <div 
+                        className="py-1 px-2 border border-black text-black rounded-md min-w-[80px] flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-all duration-200"
+                        onClick={()=> navigate("/login")}
+                        >
+                        
+                        Login
+                    </div> 
+                    <div 
+                        className="py-1 px-2 border border-black text-black rounded-md min-w-[80px] flex items-center justify-center cursor-pointer hover:bg-black hover:text-white transition-all duration-200"
+                        onClick={()=> navigate("/signup")}
+                    > 
+                        Signup
+                    </div>
+                </div>
 
                 <div className=" h-[80%] w-[60%] p-7 flex flex-col gap-7 items-center justify-center">
                     <div className="flex flex-col gap-7 ">
@@ -181,7 +197,7 @@ export default function Otp(){
                         <button 
                             type="submit" 
                             disabled={isLoading} 
-                            className="bg-black min-w-full w-full flex justify-center items-center whitespace-nowrap text-white py-2 px-5 rounded-lg transition-all disabled:bg-gray-600 hover:bg-gray-800 active:scale-[0.95] disabled:active:scale-[1]"
+                            className="bg-black min-w-full w-full flex justify-center items-center whitespace-nowrap text-white py-2 px-5 rounded-lg transition-all disabled:bg-gray-600 hover:bg-transparent hover:border hover:border-black hover:text-black active:scale-[0.95] disabled:active:scale-[1]"
 
                         >
 

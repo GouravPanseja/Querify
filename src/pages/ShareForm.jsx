@@ -217,6 +217,18 @@ export default function ShareForm(){
 
             console.log(response.data.data);
 
+            toast.success("Integeration succesfull", {
+                style: {
+                  border: '1px solid green',
+                  padding: '6px',
+                  color: '#green',
+                },
+                iconTheme: {
+                  primary: 'green',
+                  secondary: '#FFFAEE',
+                },
+            });
+
 
         }
         catch(err){

@@ -16,7 +16,7 @@ export default function TemplateCard ({template}){
                 initial={{opacity:0}}
                 exit={{opacity:0}}
                 key={template.title}
-                className="form_card xl:h-[280px] xl:w-[256px] h-[280px] w-[256px] md:h-[240px] md:w-[220px] rounded-lg bg-white cursor-pointer tempCard  transition-all duration-300 relative top-2 overflow-hidden"
+                className="form_card xl:h-[280px] xl:w-[256px] h-[280px] w-[256px] md:h-[240px] md:w-[220px] rounded-lg bg-white cursor-pointer tempCard z-[0]  transition-all duration-300 relative top-2 overflow-hidden"
                 style={{}}
                 onClick={clickHandler}
             >

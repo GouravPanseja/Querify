@@ -19,6 +19,8 @@ export default function Form(){
 
     const [loading, setLoading] =useState(false);
 
+    const [loading2, setLoading2] = useState(false);
+
     const navigate = useNavigate();
 
     const {responses, updateResponses} = useResponseStore( (state)=>({
@@ -171,6 +173,8 @@ export default function Form(){
         
         try{
 
+            setLoading2(true);
+
             console.log("anonymous value " , anonymous);
 
             const completionTime = ((new Date().getTime())) -  startTime ;
@@ -254,6 +258,8 @@ export default function Form(){
               });
 
         }
+
+        setLoading2(false);
 
     }
 
@@ -500,7 +506,20 @@ export default function Form(){
                                             />
                                         </div>
 
-                                        <button type="submit" className="border min-w-[300px] max-w-[350px] border-[#cccccc] py-3 bg-gray-800 rounded-sm text-white hover:bg-gray-600 transition-all duration-200 " onClick={ (e)=>{ e.preventDefault(); postResponse()}}> Submit Response</button>
+                                        <button 
+                                            type="submit" 
+                                            className="border relative min-w-[300px] max-w-[350px] border-[#cccccc] py-3 bg-gray-800 rounded-sm text-white hover:bg-gray-600 transition-all duration-200 " 
+                                            disabled={loading2}
+                                            onClick={ (e)=>{ e.preventDefault(); postResponse()}}> 
+
+                                            {
+                                                loading2 ?
+                                                 <ClipLoader color="#000000" className="absolute top-[50%] left-[50%]" />:
+                                                " Submit Response"
+                                            }
+                                                
+                                            </button>
+
                                         <p className="text-[14px] underline cursor-pointer" onClick={(e)=>{ e.preventDefault() ;setShowDetialsMenu(false)}}> Would rather be anonymous ?</p>
                                     </form>
                                 </div>
